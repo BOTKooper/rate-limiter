@@ -9,13 +9,9 @@ const configSchema = z.array(
   })
 );
 
-export type RouteConfig = {
-  endpoint: Route;
-  burst: number;
-  sustained: number;
-};
-
 export type Config = z.infer<typeof configSchema>;
+
+export type RouteConfig = Config extends Array<infer T> ? T : never;
 
 const DEFAULT_CONFIG_PATH = "./config.json";
 
