@@ -17,11 +17,17 @@ export type RouteConfig = {
 
 export type Config = z.infer<typeof configSchema>;
 
-const DEFAULT_CONFIG_PATH = "../config.json";
+const DEFAULT_CONFIG_PATH = "./config.json";
 
-export const getRateLimiterConfigFromFile = (
+export const getRateLimiterConfigFromFile = async (
   path: string = DEFAULT_CONFIG_PATH
 ) => {
-  const rawConfig: unknown = require(path);
+  const file = Bun.file(path);
+
+  if (!file.exists()) {
+    throw new Error(`Config file ${path} does not exist`);
+  }
+
+  const rawConfig = await file.json();
   return configSchema.parse(rawConfig);
 };

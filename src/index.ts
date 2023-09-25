@@ -3,7 +3,9 @@ import { getRateLimiterConfigFromFile } from "./config";
 import { getRouter } from "./router";
 
 console.log("Loading config from file");
-const config = getRateLimiterConfigFromFile(process.env.RATE_LIMIT_CONFIG_PATH);
+const config = await getRateLimiterConfigFromFile(
+  process.env.RATE_LIMIT_CONFIG_PATH
+);
 
 console.log("Done");
 
