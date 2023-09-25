@@ -1,0 +1,12 @@
+[
+  {
+    "endpoint": "/foo",
+    "burst": 10,
+    "sustained": 5
+  },
+  {
+    "endpoint": "/bar",
+    "burst": 10,
+    "sustained": 20
+  }
+]
